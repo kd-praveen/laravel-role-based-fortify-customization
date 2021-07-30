@@ -14,25 +14,19 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::view('/', 'auth.login');
 
 Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => ['role:super-admin'], 'prefix' => 'admin'], function () {
 
-        Route::get('home', function () {
-            return view('home');
-        });
+        Route::view('home', 'home');
 
     });
 
     Route::group(['middleware' => ['role:store-manager'], 'prefix'  => 'store-manager'], function () {
 
-        Route::get('store-home', function () {
-            return view('store-home');
-        });
+        Route::view('store-home', 'store-home');
         
     });
 
